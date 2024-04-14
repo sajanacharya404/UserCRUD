@@ -17,7 +17,7 @@ $(document).ready(function () {
       .then((response) => {
         const users = response.data;
         const tableBody = $("#userTableBody");
-        tableBody.empty(); // Clear existing table rows
+        tableBody.empty();
         users.forEach((user) => {
           const row = `<tr data-user-id="${user._id}">
                          <td>${user.name}</td>
@@ -37,12 +37,10 @@ $(document).ready(function () {
 
   const token = localStorage.getItem("token");
   if (token) {
-    // User is logged in, show user list
     $("#loginFormContainer").hide();
     $("#userList").show();
     fetchUsers();
   } else {
-    // User is not logged in, show login form
     $("#loginFormContainer").show();
     $("#userList").hide();
   }
@@ -68,10 +66,9 @@ $(document).ready(function () {
     const userId = $("#editUserId").val();
     const updatedName = $("#editName").val();
     const updatedEmail = $("#editEmail").val();
-    const updatedPassword = $("#editPassword").val(); // New password
+    const updatedPassword = $("#editPassword").val();
     const updatedUser = { name: updatedName, email: updatedEmail };
 
-    // Only include password if it's not empty
     if (updatedPassword) {
       updatedUser.password = updatedPassword;
     }
@@ -80,7 +77,7 @@ $(document).ready(function () {
       .put(`http://localhost:3000/api/users/${userId}`, updatedUser)
       .then(() => {
         $("#editUserModal").modal("hide");
-        fetchUsers(); // Refresh user list after update
+        fetchUsers();
         $("#successMessage").text("User details updated successfully.").show();
         setTimeout(() => {
           $("#successMessage").hide();
@@ -134,11 +131,11 @@ $(document).ready(function () {
       localStorage.setItem("token", token);
       $("#loginFormContainer").hide();
       $("#userList").show();
-      await fetchUsers(); // Fetch users after successful login
+      await fetchUsers();
       $("#successMessage").text("Login successful!").show();
       setTimeout(() => {
         $("#successMessage").hide();
-      }, 1000); // Show success message
+      }, 1000);
     } catch (error) {
       console.error("Login failed:", error);
       $("#errorMessage")
@@ -151,7 +148,7 @@ $(document).ready(function () {
   });
 
   $("#logoutBtn").click(function () {
-    localStorage.removeItem("token"); // Remove token from local storage
+    localStorage.removeItem("token");
     axios
       .post("http://localhost:3000/api/logout")
       .then(() => {
@@ -179,8 +176,8 @@ $(document).ready(function () {
     axios
       .post("http://localhost:3000/api/register", { name, email, password })
       .then(() => {
-        $("#registerFormContainer").hide(); // Hide registration form
-        $("#loginFormContainer").show(); // Show login form
+        $("#registerFormContainer").hide();
+        $("#loginFormContainer").show();
         $("#successMessage")
           .text("Registration successful. Please login.")
           .show();

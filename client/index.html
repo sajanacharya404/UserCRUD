@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>User Management</title>
-    <!-- Bootstrap CSS -->
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
       rel="stylesheet"
@@ -13,7 +12,6 @@
   <body>
     <div class="container mt-5">
       <h1>User Management</h1>
-      <!-- Button to trigger the modal -->
       <button
         type="button"
         class="btn btn-primary"
@@ -49,7 +47,6 @@
         </p>
       </div>
 
-      <!-- Edit User Modal -->
       <div
         class="modal fade"
         id="editUserModal"
@@ -118,7 +115,6 @@
         </div>
       </div>
 
-      <!-- Registration Form -->
       <div id="registerFormContainer" style="display: none">
         <h2>Register</h2>
         <form id="registerForm">
@@ -155,8 +151,6 @@
           Already have an account? <a href="#" id="showLoginForm">Login here</a>
         </p>
       </div>
-
-      <!-- User List (hidden initially) -->
       <div id="userList" style="display: none">
         <h2>User List</h2>
         <table class="table table-striped">
@@ -167,9 +161,7 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody id="userTableBody">
-            <!-- User rows will be dynamically added here -->
-          </tbody>
+          <tbody id="userTableBody"></tbody>
         </table>
         <button type="button" class="btn btn-danger" id="logoutBtn">
           Logout
@@ -187,8 +179,6 @@
       class="alert alert-success"
       style="display: none"
     ></div>
-
-    <!-- Reset Password Modal -->
     <div
       class="modal fade"
       id="resetPasswordModal"
@@ -240,13 +230,10 @@
       </div>
     </div>
 
-    <!-- jQuery and Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <!-- Axios -->
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <!-- Custom JS -->
     <script src="scripts.js"></script>
   </body>
 </html>
