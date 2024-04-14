@@ -5,6 +5,7 @@ import {
   getUserById,
   getUsers,
   loginUser,
+  logoutUser,
   registerUser,
   resetPassword,
 } from "../controllers/user.controller.js";
@@ -18,5 +19,5 @@ router.delete("/users/:id", deleteUser);
 router.post("/reset-password", resetPassword);
 router.get("/users", getUsers);
 router.get("/users/:id", getUserById);
-
+router.post("/logout", logoutUser);
 export default router;
