@@ -14,8 +14,71 @@
     <div class="container mt-5">
       <h1>User Management</h1>
       <hr />
-      <!-- User List -->
-      <div id="userList">
+      <!-- Login Form -->
+      <div id="loginFormContainer">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="loginEmail">Email:</label>
+            <input type="email" class="form-control" id="loginEmail" required />
+          </div>
+          <div class="form-group">
+            <label for="loginPassword">Password:</label>
+            <input
+              type="password"
+              class="form-control"
+              id="loginPassword"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+        <p>
+          Don't have an account?
+          <a href="#" id="showRegisterForm">Register here</a>
+        </p>
+      </div>
+
+      <!-- Registration Form -->
+      <div id="registerFormContainer" style="display: none">
+        <h2>Register</h2>
+        <form id="registerForm">
+          <div class="form-group">
+            <label for="registerName">Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              id="registerName"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="registerEmail">Email:</label>
+            <input
+              type="email"
+              class="form-control"
+              id="registerEmail"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">Password:</label>
+            <input
+              type="password"
+              class="form-control"
+              id="registerPassword"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-primary">Register</button>
+        </form>
+        <p>
+          Already have an account? <a href="#" id="showLoginForm">Login here</a>
+        </p>
+      </div>
+
+      <!-- User List (hidden initially) -->
+      <div id="userList" style="display: none">
         <h2>User List</h2>
         <table class="table table-striped">
           <thead>
@@ -29,47 +92,9 @@
             <!-- User rows will be dynamically added here -->
           </tbody>
         </table>
-      </div>
-
-      <!-- Edit User Modal -->
-      <div
-        class="modal fade"
-        id="editUserModal"
-        tabindex="-1"
-        role="dialog"
-        aria-labelledby="editUserModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="editUserModalLabel">Edit User</h5>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <!-- Form fields for editing user details will be added here -->
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="button" class="btn btn-primary" id="saveChangesBtn">
-                Save Changes
-              </button>
-            </div>
-          </div>
-        </div>
+        <button type="button" class="btn btn-danger" id="logoutBtn">
+          Logout
+        </button>
       </div>
     </div>
 
