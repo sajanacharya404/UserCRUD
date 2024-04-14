@@ -1,5 +1,16 @@
 $(document).ready(function () {
-  // Function to fetch and display user data in the table
+  $("#showRegisterForm").click(function (event) {
+    event.preventDefault();
+    $("#loginFormContainer").hide();
+    $("#registerFormContainer").show();
+  });
+
+  $("#showLoginForm").click(function (event) {
+    event.preventDefault();
+    $("#registerFormContainer").hide();
+    $("#loginFormContainer").show();
+  });
+
   const fetchUsers = () => {
     axios
       .get("http://localhost:3000/api/users")
@@ -84,4 +95,55 @@ $(document).ready(function () {
         });
     }
   });
+
+  // Login functionality
+  $("#loginForm").submit(function (event) {
+    event.preventDefault();
+    const email = $("#loginEmail").val();
+    const password = $("#loginPassword").val();
+    axios
+      .post("http://localhost:3000/api/login", { email, password })
+      .then(() => {
+        $("#loginFormContainer").hide(); // Hide login form
+        $("#userList").show(); // Show user list
+        fetchUsers(); // Fetch users after successful login
+      })
+      .catch((error) => {
+        console.error("Login failed:", error);
+        // Display login error message to the user
+      });
+  });
+
+  // Logout functionality
+  $("#logoutBtn").click(function () {
+    axios
+      .post("http://localhost:3000/api/logout")
+      .then(() => {
+        $("#loginFormContainer").show(); // Show login form
+        $("#userList").hide(); // Hide user list
+      })
+      .catch((error) => {
+        console.error("Logout failed:", error);
+        // Display logout error message to the user
+      });
+  });
+
+  $("#registerForm").submit(function (event) {
+    event.preventDefault();
+    const name = $("#registerName").val();
+    const email = $("#registerEmail").val();
+    const password = $("#registerPassword").val();
+    axios
+      .post("http://localhost:3000/api/register", { name, email, password })
+      .then(() => {
+        $("#registerFormContainer").hide(); // Hide registration form
+        $("#userList").show(); // Show user list
+        fetchUsers(); // Fetch users after successful registration
+      })
+      .catch((error) => {
+        console.error("Registration failed:", error);
+        // Display registration error message to the user
+      });
+  });
 });
+s;
