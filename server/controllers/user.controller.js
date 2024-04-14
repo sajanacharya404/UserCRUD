@@ -46,3 +46,30 @@ export const loginUser = async (req, res) => {
     res.status(401).json({ error: error.message });
   }
 };
+
+export const editUser = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { name, email, password } = req.body;
+    const user = await User.findById(id);
+    if (!user) {
+      throw new Error("User not found");
+    }
+
+    if (name) user.name = name;
+    if (email) user.email = email;
+
+    if (password) {
+      const hashedPassword = await bcrypt.hash(password, 10);
+      user.password = hashedPassword;
+    }
+
+    await user.save();
+
+    res
+      .status(200)
+      .json({ message: "User details updated successfully", user });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
