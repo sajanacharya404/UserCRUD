@@ -82,12 +82,18 @@ $(document).ready(function () {
         $("#editUserModal").modal("hide");
         fetchUsers(); // Refresh user list after update
         $("#successMessage").text("User details updated successfully.").show();
+        setTimeout(() => {
+          $("#successMessage").hide();
+        }, 1000);
       })
       .catch((error) => {
         console.error("Error updating user:", error);
         $("#errorMessage")
           .text("Failed to update user details. Please try again.")
           .show();
+        setTimeout(() => {
+          $("#errorMessage").hide();
+        }, 2000);
       });
   });
 
@@ -99,12 +105,18 @@ $(document).ready(function () {
         .then(() => {
           fetchUsers(); // Refresh user list after delete
           $("#successMessage").text("User deleted successfully.").show();
+          setTimeout(() => {
+            $("#successMessage").hide();
+          }, 1000);
         })
         .catch((error) => {
           console.error("Error deleting user:", error);
           $("#errorMessage")
             .text("Failed to delete user. Please try again.")
             .show();
+          setTimeout(() => {
+            $("#errorMessage").hide();
+          }, 2000);
         });
     }
   });
@@ -123,12 +135,18 @@ $(document).ready(function () {
       $("#loginFormContainer").hide();
       $("#userList").show();
       await fetchUsers(); // Fetch users after successful login
-      $("#successMessage").text("Login successful!").show(); // Show success message
+      $("#successMessage").text("Login successful!").show();
+      setTimeout(() => {
+        $("#successMessage").hide();
+      }, 1000); // Show success message
     } catch (error) {
       console.error("Login failed:", error);
       $("#errorMessage")
         .text("Login failed. Please check your credentials.")
         .show();
+      setTimeout(() => {
+        $("#errorMessage").hide();
+      }, 2000);
     }
   });
 
@@ -140,10 +158,16 @@ $(document).ready(function () {
         $("#loginFormContainer").show();
         $("#userList").hide();
         $("#successMessage").text("Logout successful.").show();
+        setTimeout(() => {
+          $("#successMessage").hide();
+        }, 1000);
       })
       .catch((error) => {
         console.error("Logout failed:", error);
         $("#errorMessage").text("Logout failed. Please try again.").show();
+        setTimeout(() => {
+          $("#errorMessage").hide();
+        }, 2000);
       });
   });
 
@@ -160,12 +184,18 @@ $(document).ready(function () {
         $("#successMessage")
           .text("Registration successful. Please login.")
           .show();
+        setTimeout(() => {
+          $("#successMessage").hide();
+        }, 1000);
       })
       .catch((error) => {
         console.error("Registration failed:", error);
         $("#errorMessage")
           .text("Registration failed. Please try again.")
           .show();
+        setTimeout(() => {
+          $("#errorMessage").hide();
+        }, 2000);
       });
   });
 
@@ -183,6 +213,9 @@ $(document).ready(function () {
         $("#errorMessage")
           .text("Password reset failed. Please try again.")
           .show();
+        setTimeout(() => {
+          $("#errorMessage").hide();
+        }, 2000);
       });
   });
 });
