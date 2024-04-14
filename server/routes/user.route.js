@@ -1,5 +1,6 @@
 import express from "express";
 import {
+  deleteUser,
   editUser,
   loginUser,
   registerUser,
@@ -10,5 +11,6 @@ const router = express.Router();
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.put("/users/:id", editUser);
+router.delete("/users/:id", deleteUser);
 
 export default router;
