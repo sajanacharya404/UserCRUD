@@ -35,7 +35,17 @@ $(document).ready(function () {
       });
   };
 
-  fetchUsers();
+  const token = localStorage.getItem("token");
+  if (token) {
+    // User is logged in, show user list
+    $("#loginFormContainer").hide();
+    $("#userList").show();
+    fetchUsers();
+  } else {
+    // User is not logged in, show login form
+    $("#loginFormContainer").show();
+    $("#userList").hide();
+  }
 
   $("#userList").on("click", ".btn-edit", function () {
     const userId = $(this).closest("tr").data("user-id");
@@ -96,7 +106,10 @@ $(document).ready(function () {
     const password = $("#loginPassword").val();
     axios
       .post("http://localhost:3000/api/login", { email, password })
-      .then(() => {
+      .then((response) => {
+        const token = response.data.token;
+        // Store token in local storage
+        localStorage.setItem("token", token);
         $("#loginFormContainer").hide();
         $("#userList").show();
         fetchUsers();
@@ -107,6 +120,7 @@ $(document).ready(function () {
   });
 
   $("#logoutBtn").click(function () {
+    localStorage.removeItem("token"); // Remove token from local storage
     axios
       .post("http://localhost:3000/api/logout")
       .then(() => {
