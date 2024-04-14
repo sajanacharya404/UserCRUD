@@ -140,9 +140,8 @@ $(document).ready(function () {
     axios
       .post("http://localhost:3000/api/register", { name, email, password })
       .then(() => {
-        $("#registerFormContainer").hide();
-        $("#userList").show();
-        fetchUsers();
+        $("#registerFormContainer").hide(); // Hide registration form
+        $("#loginFormContainer").show(); // Show login form
       })
       .catch((error) => {
         console.error("Registration failed:", error);
